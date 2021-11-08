@@ -65,7 +65,7 @@ textarea {
 }
 
 #add,
-#edit,
+#update,
 #view,
 #delete {
   padding: 5px 10px;
@@ -73,4 +73,14 @@ textarea {
   color: #ddd;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.responsec {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0;
+  background-color: #ddd;
+  padding: 5px;
+  border: 1px solid #111;
 }
