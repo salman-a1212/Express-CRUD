@@ -16,9 +16,17 @@ app.use((req, res, next) => {
 });
 
 app.get("/users", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   res.send(users);
 });
-app.get("/user/:id", (req, res) => {
+app.get(`/user/:id`, (req, res) => {
   if (users[req.params.id]) {
     res.send(users[req.params.id]);
   } else {
@@ -26,6 +34,14 @@ app.get("/user/:id", (req, res) => {
   }
 });
 app.post("/user", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   if (!req.body.name || !req.body.email || !req.body.address) {
     res.status(400).send("invalid data");
   } else {
@@ -38,7 +54,15 @@ app.post("/user", (req, res) => {
     res.send("users created");
   }
 });
-app.put("/user/:id", (req, res) => {
+app.put(`/user/:id`, (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   if (users[req.params.id]) {
     if (req.body.name) {
       users[req.params.id].name = req.body.name;
@@ -56,6 +80,14 @@ app.put("/user/:id", (req, res) => {
   }
 });
 app.delete("/user/:id", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   if (users[req.params.id]) {
     users[req.params.id] = {};
     res.send("user deleted");
@@ -65,9 +97,25 @@ app.delete("/user/:id", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   res.send("here is your home");
 });
 app.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
   res.send("Hi I am a hello world Server program");
 });
 
