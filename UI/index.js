@@ -1,109 +1,112 @@
 // User Add
-document.getElementById("add").addEventListener("click", async (event) => {
-  event.preventDefault();
-
-  let userid = Number(document.getElementById("userid").value);
-  console.log("userid", userid);
+const addUser = () => {
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
   let address = document.getElementById("address").value;
   axios
     .post("https://crud-app-ai.herokuapp.com/user", {
-      // userid: userid,
       name: name,
       email: email,
       address: address,
     })
     .then(function (response) {
       console.log(response);
-      document.getElementById("idres").value = "";
-      document.getElementById("nameres").innerHTML = response.data.name;
-      document.getElementById("emailres").innerHTML = response.data.email;
-      document.getElementById("addres").innerHTML = response.data.address;
+      getUsers();
     })
     .catch(function (error) {
       console.log(error);
     });
-});
+};
 
-// View all users
-
-document.getElementById("view").addEventListener("click", async (event) => {
-  event.preventDefault();
-  let userid = Number(document.getElementById("userid").value);
-  //   let name = document.getElementById("name").value;
-  //   let email = document.getElementById("email").value;
-  //   let address = document.getElementById("address").value;
+const getUsers = () => {
+  const result = document.getElementById("result");
   axios
     .get("https://crud-app-ai.herokuapp.com/users")
     .then(function (response) {
       console.log(response.data);
-      for (let i = 0; i < response.data.length; i++) {
-        if (response.data[i] === response.data.length) {
-          break;
-        }
-        console.log("response", response.data[i], response.data.length);
-        document.getElementById("idres").innerHTML +=
-          response.data[i].userid + "<br>";
-        document.getElementById("nameres").innerHTML +=
-          response.data[i].name + "<br>";
-        document.getElementById("emailres").innerHTML +=
-          response.data[i].email + "<br>";
-        document.getElementById("addres").innerHTML +=
-          response.data[i].address + "<br>";
-      }
-      console.log("userid", userid);
+      const users = response.data;
+      // console.log(users)
+      const userList = users.map((user) => {
+        return ` <tr> <td> ${user.name} </td> <td> ${user.email} </td> <td> ${user.address} </td></tr>`;
+      });
+      result.innerHTML = "";
+      result.innerHTML = userList.join("");
     })
     .catch(function (error) {
       console.log(error);
     });
-});
+};
 
-// Update users
-document.getElementById("update").addEventListener("click", async (event) => {
-  event.preventDefault();
+let addBtn = document.getElementById("add");
+let viewBtn = document.getElementById("view");
+let updateBtn = document.getElementById("update");
+let deletBtn = document.getElementById("delete");
 
-  let userid = Number(document.getElementById("userid").value);
+addBtn.addEventListener("click", addUser);
+
+// update data
+const updateData = async () => {
+  let userid = document.getElementById("userid").value;
+  console.log("userid", userid);
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
   let address = document.getElementById("address").value;
+
+  if (name) {
+    axios
+      .put(`https://crud-app-ai.herokuapp.com/user/${userid}`, { name })
+      .then((res) => getUsers());
+  }
+  if (email) {
+    axios
+      .put(`https://crud-app-ai.herokuapp.com/user/${userid}`, { email })
+      .then((res) => getUsers());
+  }
+  if (address) {
+    axios
+      .put(`https://crud-app-ai.herokuapp.com/user/${userid}`, { address })
+      .then((res) => getUsers());
+  }
+};
+
+updateBtn.addEventListener("click", updateData);
+
+// delete user
+const deleteUser = () => {
+  let userid = document.getElementById("userid").value;
+  const result = document.getElementById("result");
+  if (userid) {
+    axios
+      .delete(`https://crud-app-ai.herokuapp.com/user/${userid}`)
+      .then(() => getUsers());
+  }
+  result.innerHTML = "";
+};
+
+deletBtn.addEventListener("click", deleteUser);
+
+// search a single user
+const getUser = () => {
+  let userid = document.getElementById("userid").value;
+  const result = document.getElementById("result");
   axios
-    .put(`https://crud-server-api-nodejs.herokuapp.com/user/${userid}`, {
-      name: name,
-      email: email,
-      address: address,
-      userid: userid,
-    })
+    .get(`https://crud-app-ai.herokuapp.com/user/${userid}`)
     .then(function (response) {
-      console.log(response);
-      document.getElementById("idres").innerHTML = response.data.userid;
-      document.getElementById("nameres").innerHTML = response.data.name;
-      document.getElementById("emailres").innerHTML = response.data.email;
-      document.getElementById("addres").innerHTML = response.data.address;
+      console.log(response.data);
+      const users = response.data;
+      result.innerHTML = ` <tr> <td> ${users.name} </td> <td> ${users.email} </td> <td> ${users.address} </td></tr>`;
     })
     .catch(function (error) {
       console.log(error);
     });
-});
+};
+// viewBtn.addEventListener("click", getUser);
 
-// Delete users
-document.getElementById("delete").addEventListener("click", async (event) => {
-  event.preventDefault();
-
-  let userid = Number(document.getElementById("userid").value);
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let address = document.getElementById("address").value;
-  axios
-    .delete(`https://crud-server-api-nodejs.herokuapp.com/user/${userid}`)
-    .then(function (response) {
-      console.log(response);
-      document.getElementById("idres").innerHTML = response.data;
-      document.getElementById("nameres").innerHTML = response.data;
-      document.getElementById("emailres").innerHTML = response.data;
-      document.getElementById("addres").innerHTML = response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-});
+viewBtn.onclick = function viewRun() {
+  let userid = document.getElementById("userid").value;
+  if (userid === "") {
+    getUsers();
+  } else {
+    getUser();
+  }
+};
