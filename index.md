@@ -153,7 +153,7 @@ textarea {
   text-align: center;
 }
 
-.table {
+table {
   margin: 50px;
 }
 
