@@ -49,6 +49,7 @@ app.post("/user", (req, res) => {
       name: req.body.name,
       email: req.body.email,
       address: req.body.address,
+      index: users.length,
     });
 
     res.send("users created");
