@@ -100,7 +100,6 @@ const getUser = () => {
       console.log(error);
     });
 };
-// viewBtn.addEventListener("click", getUser);
 
 viewBtn.onclick = function viewRun() {
   let userid = document.getElementById("userid").value;
