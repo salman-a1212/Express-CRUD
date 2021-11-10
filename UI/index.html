@@ -44,28 +44,19 @@
             <button id="delete">Delete</button>
           </div>
         </div>
-        <div class="responsec">
-          <div class="idresc">
-            <p>ID</p>
-            <p id="idres"></p>
-          </div>
-          <div class="nameresc">
-            <p>Name</p>
-            <p id="nameres"></p>
-          </div>
-          <div class="emailresc">
-            <p>Email</p>
-            <p id="emailres"></p>
-          </div>
-          <div class="addresc">
-            <p>Address</p>
-            <p id="addres"></p>
-          </div>
-        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Name</th>
+              <th scope="col" class="text-center">Email</th>
+              <th scope="col" class="text-center">Address</th>
+            </tr>
+          </thead>
+          <tbody id="result" class="text-center"></tbody>
+        </table>
       </div>
     </div>
     <script src="index.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
