@@ -57,7 +57,7 @@ textarea {
 }
 
 .add-btnc,
-.edit-btnc,
+.update-btnc,
 .view-btnc,
 .delete-btnc {
   margin: 10px;
@@ -83,4 +83,16 @@ textarea {
   background-color: #ddd;
   padding: 5px;
   border: 1px solid #111;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.table {
+  margin: 50px;
+}
+
+th {
+  border-bottom: 1px dashed #111;
 }
