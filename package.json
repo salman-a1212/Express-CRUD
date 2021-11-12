@@ -1,0 +1,28 @@
+{
+  "name": "crud-app",
+  "version": "1.0.0",
+  "description": "Node JS Express CRUD Basic App\r https://salman-a1212.github.io/Express-CRUD/",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salman-a1212/Express-CRUD.git"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "Salman Aslam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salman-a1212/Express-CRUD/issues"
+  },
+  "homepage": "https://github.com/salman-a1212/Express-CRUD#readme"
+}
