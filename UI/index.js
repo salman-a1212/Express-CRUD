@@ -109,12 +109,3 @@ viewBtn.onclick = function viewRun() {
     getUser();
   }
 };
-<<<<<<< Updated upstream
-
-async function main() {
-  // we'll add code here soon
-  const uri =
-    "mongodb+srv://admindb:RvP7P3GK7YE1Aq8T@syaic-assign.c8no6.mongodb.net/crud-app?retryWrites=true&w=majority";
-}
-=======
->>>>>>> Stashed changes
